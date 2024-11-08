@@ -63,13 +63,16 @@ def main():
             print(f"Unable to parse the fields for CRD {crd_name}")
             sys.exit(-1)
 
+        print(f"=======  Missing Fields for {crd_name}  =============")
         missing_fields = []
         for item in crd_fields:
             if item["path"] not in template_fields:
                 missing_fields.append(item["path"])
+                print(item["path"])
 
-        print(f"=======  Missing Fields for {crd_name}  =============")
-        print(missing_fields)
+
+
+        # print(missing_fields,sep='\n')
 
 if __name__ == "__main__":
     main()
