@@ -16,7 +16,7 @@ The program parses the CRD object (OpenAPI V3 Schema) and lists all the possible
 If there are any fields that need to be omitted during the process, they can be configured as described in the sections below."
 
 
-# ALL THE CONFIGURATIONS POSSIBLE
+# All the possible configurations
 
 All the configurable sections are present [here](https://github.com/cshiv/chart-check/blob/2ca719b5f999592d8cb99071709adbc12fc29a6e/src/predefined.py#L1).
 Some important configurations are 
