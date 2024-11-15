@@ -48,10 +48,14 @@ def parse_schema(schema,crd_name, prefix=''):
         for key, value in schema.items():
             current_field = f"{prefix}.{key}" if prefix else key
             # List will contain a list of dict (property, type , conditions)
-            if "properties" not in value and type(value)==dict:                
-                if not any(re.search(s,current_field) for s in predefined.IGNORE_CRD_PATH[crd_name]):
-                    # print(current_field)
-                    fields.append({"path":current_field,"type": value.get("type"),"condition": None})  # Append current field to output                
+            if "properties" not in value and type(value)==dict:    
+                try:
+                    if not any(re.search(s,current_field) for s in predefined.IGNORE_CRD_PATH[crd_name]):
+                        # print(current_field)
+                        fields.append({"path":current_field,"type": value.get("type"),"condition": None})  # Append current field to output                
+                except re.error:
+                    print(f"Unable to Parse regular expression,please validate")
+                    return None
             if "properties" in value:
                 fields.extend(parse_schema(value.get("properties"),crd_name, current_field))  # Extend with parsed output
             if "items" in value:
