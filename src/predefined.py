@@ -110,27 +110,6 @@ IGNORE_CRD_PATH = {
         "spec.pxc.lifecycle.*", 
         "spec.pxc.sidecar*",
         "spec.proxysql.sidecar.*"            
-        # "spec.haproxy.affinity.advanced.*",
-        # "spec.haproxy.containerSecurityContext.*",
-        # "spec.haproxy.containerSecurityContext.*",
-        # "spec.haproxy.livenessProbes.*",
-        # "spec.haproxy.podSecurityContext.*",
-        # "spec.haproxy.readinessProbes.*",
-        # "spec.haproxy.topologySpreadConstraints.*",
-        # "spec.logcollector.containerSecurityContext.*",
-        # "spec.pmm.containerSecurityContext.*",
-        # "spec.proxysql.affinity.advanced.*",
-        # "spec.proxysql.containerSecurityContext.*",
-        # "spec.proxysql.livenessProbes.*",
-        # "spec.proxysql.podSecurityContext.*",
-        # "spec.proxysql.readinessProbes.*",
-        # "spec.proxysql.topologySpreadConstraints.*",
-        # "spec.pxc.affinity.advanced.*",
-        # "spec.pxc.containerSecurityContext.*",     
-        # "spec.pxc.livenessProbes.*",
-        # "spec.pxc.podSecurityContext.*",
-        # "spec.pxc.readinessProbes.*",     
-        # "spec.pxc.topologySpreadConstraints.*"
     ]
 }
 
@@ -154,13 +133,17 @@ ADD_HELM_PATH = {
 # 
 # Variable GIT_<DATABASE>_INFO contains following values
 # crd_repo: Repo from where the crd.yaml file is present
+# crd_branch: Name of the branch from where CRD file needs to be picked. If left empty, latest tag will be taken
 # template_file: Location of template file for the custom resource with respect to helm template repo
+# template_branch: Name of the branch from where template of the helm chart needs to be taken, If left empty, latest tag will be taken
 # tag_pattern: Pattern of tags used in the helm charts repo , for example PXC DB chart uses the format pxc-db-X.Y.Z
 #              Pattern will have the character set for comparison with regular expression
 # cr_name: Custom Resource name used in the template of a chart. This is used for exceptions when needed
 GIT_PXC_INFO={
     "crd_repo": "percona/percona-xtradb-cluster-operator",
+    "crd_branch": "",
     "template_file": "charts/pxc-db/templates/cluster.yaml",
+    "template_branch": "",
     "tag_pattern": "pxc-db",
     "cr_name": "PerconaXtraDBCluster"                 
 }

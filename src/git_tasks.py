@@ -12,8 +12,12 @@ def get_latest_semantic_tag(valid_tags):
     return max(valid_tags, key=lambda s: list(map(int, re.findall(r'\d+', s))))
 
 # Fetch the file from github based on repo,tags,path and returns the content of file
-def fetch_file_from_tag(repo,token,tag,path):
-    url= f"{predefined.GIT_RAW_URL}/{repo}/refs/tags/{tag}/{path}"
+def fetch_file(repo,token,ref,tag,path):
+    url=None
+    if tag:
+        url= f"{predefined.GIT_RAW_URL}/{repo}/refs/tags/{ref}/{path}"
+    else:
+        url= f"{predefined.GIT_RAW_URL}/{repo}/refs/heads/{ref}/{path}"
     # Fetch the CRD
     headers = {
         'Authorization': f'token {token}'
